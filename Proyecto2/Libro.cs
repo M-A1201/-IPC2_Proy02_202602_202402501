@@ -3,40 +3,54 @@ class Libro
 {
     //atributos
     private string titulo;
-    private int ISBN;
+    private int isbn;
     private string nombreAutor;
     private string categoria;
 
 
-    //metodos
-    public  void RegistrarNuevosLibros()
+    //constructor
+    public Libro(int isbn, string titulo, string nombreAutor, string categoria)
     {
+        this.isbn=isbn;
+        this.titulo=titulo;
+        this.nombreAutor=nombreAutor;
+        this.categoria=categoria;  
+    }
+
+    //propiedades(metodos getter y setter) para acceder al los atributos
+    public string Titulo
+    {
+        get
+    {
+        return titulo;
+    }
+       
+    }
+    public string NombreAutor
+    {
+        get
+    {
+        return nombreAutor;
+    }
         
     }
 
-    public void BuscarLibro()
+    public string Categoria
     {
-        
+        get
+    {
+        return categoria;
+    }
+    
     }
 
-    public void MostrarLibrosAsendentementePorISBN()
+    public int ISBN
     {
-        
+        get
+    {
+        return isbn;
     }
-    public void MostrarLibroConISBNmasPequeño()
-    {
-        
-    }
-
-    public void MostrarLibroConISBNmasGrande()
-    {
-        
-    }
-
-//se van eliminando los libros mientras se va comprando digamos
-    public void EliminarLibros()
-    {
-        
+       
     }
 
 
