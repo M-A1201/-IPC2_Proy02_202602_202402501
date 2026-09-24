@@ -25,4 +25,30 @@ class LectorXML
             Console.WriteLine("Error al leer el archivo XML: " + ex.Message);
         }
     }
+
+    // Método para procesar las categorías del XML
+    public void ProcesarCategorias(XmlNode nodoConfig, Biblioteca biblioteca)
+    {
+        // Buscamos la etiqueta <listaCategorias> dentro de la configuración
+        XmlNode listaCatNode = nodoConfig.SelectSingleNode("listaCategorias");//que es listaCat? por que Cat?
+
+        if (listaCatNode != null)
+        {
+            // Recorremos cada etiqueta <categoria> que se encuentre en la lista
+            foreach (XmlNode nodoCat in listaCatNode.SelectNodes("categoria"))
+            {
+                string nombreCategoria = nodoCat.InnerText.Trim();
+                
+                // Verificamos si tiene el atributo padre (es opcional)
+                string nombrePadre = "";
+                if (nodoCat.Attributes["padre"] != null)
+                {
+                    nombrePadre = nodoCat.Attributes["padre"].Value.Trim();
+                }
+
+                // Aquí posteriormente enlazaremos la categoría al árbol general de la biblioteca
+                Console.WriteLine($"Categoría leída: {nombreCategoria}, Padre: {(string.IsNullOrEmpty(nombrePadre) ? "Ninguno (Raíz)" : nombrePadre)}");
+            }
+        }
+    }
 }
