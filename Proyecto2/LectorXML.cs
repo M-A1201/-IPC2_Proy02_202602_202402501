@@ -14,10 +14,11 @@ class LectorXML
             // Obtenemos el nodo raíz <config> del archivo XML
             XmlNode nodoConfig = documento.SelectSingleNode("//config");
 
-            if (nodoConfig != null)
+           if (nodoConfig != null)
             {
                 Console.WriteLine("Archivo XML cargado correctamente.");
-                // Aquí procesaremos las listas de categorías y libros en los siguientes pasos
+                ProcesarCategorias(nodoConfig, biblioteca);
+                ProcesarLibros(nodoConfig, biblioteca);
             }
         }
         catch (Exception ex)
@@ -48,6 +49,28 @@ class LectorXML
 
                 // Aquí posteriormente enlazaremos la categoría al árbol general de la biblioteca
                 Console.WriteLine($"Categoría leída: {nombreCategoria}, Padre: {(string.IsNullOrEmpty(nombrePadre) ? "Ninguno (Raíz)" : nombrePadre)}");
+            }
+        }
+    }
+
+    // Método para procesar los libros del XML
+    public void ProcesarLibros(XmlNode nodoConfig, Biblioteca biblioteca)
+    {
+        // Buscamos la etiqueta <listaLibros> dentro de la configuración
+        XmlNode listaLibrosNode = nodoConfig.SelectSingleNode("listaLibros");
+
+        if (listaLibrosNode != null)
+        {
+            // Recorremos cada etiqueta <libro> dentro de la lista
+            foreach (XmlNode nodoLibro in listaLibrosNode.SelectNodes("libro"))
+            {
+                int isbn = int.Parse(nodoLibro.SelectSingleNode("ISBN").InnerText.Trim());
+                string titulo = nodoLibro.SelectSingleNode("titulo").InnerText.Trim();
+                string autor = nodoLibro.SelectSingleNode("autor").InnerText.Trim();
+                string categoriaLibro = nodoLibro.SelectSingleNode("categoria").InnerText.Trim();
+
+                // Aquí posteriormente asviaremos este libro a su respectiva categoría
+                Console.WriteLine($"Libro leído: [ISBN: {isbn}] {titulo} por {autor}");
             }
         }
     }
