@@ -1,36 +1,35 @@
 using System;
+
 class NodoLibro
 {
     private Libro libro;
     private NodoLibro siguiente; //puntero al siguiente nodo
 
-public NodoLibro(Libro libro)
+    public NodoLibro(Libro libro)
     {
-       this.libro=libro;
-       this.siguiente=null; 
+        this.libro = libro;
+        this.siguiente = null; 
     }
 
-//propiedad para los atributos de la clase NodoLibro
+    // Propiedades o métodos de acceso
     public Libro Libro
     {
-        get
-        {
-            return libro;
-        }
-       
+        get { return libro; }
     }
 
     public NodoLibro Siguiente
     {
-        get
-        {
-            return siguiente;
-        }
+        get { return siguiente; }
     }
 
-    public void SetSiguiente(NodoLibro siguiente)
-    {
-        this.siguiente=siguiente;
+    public NodoLibro GetSiguiente() 
+    { 
+        return siguiente; 
     }
 
+    // Único método SetSiguiente (borra el duplicado de abajo)
+    public void SetSiguiente(NodoLibro siguiente) 
+    { 
+        this.siguiente = siguiente; 
+    }
 }
