@@ -1,0 +1,27 @@
+﻿@{
+    ViewData["Title"] = "Panel Principal";
+}
+
+<div class="row justify-content-center align-items-center" style="min-height: 75vh;">
+    <div class="col-md-9 col-lg-8">
+        <div class="card card-custom p-5 text-center">
+            
+            <!-- Únicamente el título principal centrado -->
+            <div class="my-3">
+                <h2 class="fw-bold text-dark d-inline-block">
+                    <i class="fa-solid fa-book text-danger me-2"></i> Sistema de Gestión de Biblioteca
+                </h2>
+            </div>
+
+            @if (TempData["Mensaje"] != null)
+            {
+                var tipo = TempData["TipoAlerta"] ?? "success";
+                <div class="alert alert-@tipo alert-dismissible fade show shadow-sm text-start mt-3" role="alert">
+                    @TempData["Mensaje"]
+                    <button type="button" class="btn-close" data-bs-dismiss="alert"></button>
+                </div>
+            }
+
+        </div>
+    </div>
+</div>

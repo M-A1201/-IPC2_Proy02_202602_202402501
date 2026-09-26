@@ -1,0 +1,59 @@
+@{
+    ViewData["Title"] = "2. Registrar nuevo libro";
+}
+
+<div class="row justify-content-center align-items-center" style="min-height: 75vh;">
+    <div class="col-md-9 col-lg-8">
+        <div class="card card-custom p-5">
+            <div class="d-flex justify-content-between align-items-center mb-4">
+                <h2 class="fw-bold text-dark m-0">
+                    <i class="fa-solid fa-book-medical text-danger me-2"></i> 2. Registrar Nuevo Libro en Catálogo
+                </h2>
+                <a href="@Url.Action("Index", "Home")" class="btn btn-outline-dark btn-sm">
+                    <i class="fa-solid fa-arrow-left me-1"></i> Volver
+                </a>
+            </div>
+            <hr />
+
+            @if (TempData["Mensaje"] != null)
+            {
+                var tipo = TempData["TipoAlerta"] ?? "success";
+                <div class="alert alert-@tipo alert-dismissible fade show shadow-sm" role="alert">
+                    @TempData["Mensaje"]
+                    <button type="button" class="btn-close" data-bs-dismiss="alert"></button>
+                </div>
+            }
+
+            <!-- Formulario de Registro conectado por POST -->
+            <form asp-action="Registrar" method="post" class="mt-3">
+                <div class="row">
+                    <div class="col-md-6 mb-3">
+                        <label class="form-label fw-bold text-dark">ISBN</label>
+                        <input type="text" name="isbn" class="form-control" placeholder="Ej. 1733325340" required />
+                    </div>
+                    <div class="col-md-6 mb-3">
+                        <label class="form-label fw-bold text-dark">Título</label>
+                        <input type="text" name="titulo" class="form-control" placeholder="Ej. Crónicas de Biología" required />
+                    </div>
+                </div>
+
+                <div class="row">
+                    <div class="col-md-6 mb-3">
+                        <label class="form-label fw-bold text-dark">Autor</label>
+                        <input type="text" name="autor" class="form-control" placeholder="Nombre del autor" required />
+                    </div>
+                    <div class="col-md-6 mb-3">
+                        <label class="form-label fw-bold text-dark">Categoría (Destino)</label>
+                        <input type="text" name="categoria" class="form-control" placeholder="Ej. Ecología" required />
+                    </div>
+                </div>
+
+                <div class="d-grid mt-3">
+                    <button type="submit" class="btn btn-custom py-2">
+                        <i class="fa-solid fa-floppy-disk me-2"></i> Registrar Libro
+                    </button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
